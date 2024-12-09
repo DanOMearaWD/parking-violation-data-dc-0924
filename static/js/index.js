@@ -32,8 +32,6 @@ d3.json(geojson_file).then(function (data) {
 
 
 
-
-
 }).catch(function (error) {
     console.error("Error loading GeoJSON file:", error);
 });
