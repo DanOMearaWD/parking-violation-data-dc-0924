@@ -3,10 +3,22 @@
 // http://localhost:8000/
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 //initialize geojson file location
 const geojson_file = "../../output/Cleaned_Parking_Violations_DC_09_2024.geojson";
 
-//load the file
+//load Geojson
 d3.json(geojson_file).then(function (data) {
     console.log(data);
 
@@ -35,5 +47,3 @@ d3.json(geojson_file).then(function (data) {
 }).catch(function (error) {
     console.error("Error loading GeoJSON file:", error);
 });
-
-
