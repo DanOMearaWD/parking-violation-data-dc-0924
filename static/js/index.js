@@ -20,6 +20,55 @@ d3.json(geojson_file).then(function (data) {
         noWrap: true // Disable tile wrapping
     });
 
+
+
+
+    // Create a marker cluster group
+    const marker_cluster = L.markerClusterGroup();
+
+
+
+    //array to hold heatmap arrays [lat,lng,intensity]
+    const heatmap_data = []
+
+
+    // Add markers to the cluster group
+    data.features.forEach(function (feature) {
+        const lat = feature.geometry.coordinates[1];
+        const lng = feature.geometry.coordinates[0];
+
+        const marker = L.marker([lat, lng])
+            .bindPopup(`<b>${feature.properties.violation_description}</b><br>${feature.properties.location}`);
+        marker_cluster.addLayer(marker);
+
+
+        heatmap_data.push([lat, lng, 0.01]);
+
+    });
+
+
+    // Create the heatmap layer using the heatmapData array
+    const heatLayer = L.heatLayer(heatmap_data, {
+        radius: 25,
+        blur: 15,
+        maxZoom: 17
+    });
+
+    //Create a heatmap layer group
+    const heatmap = L.layerGroup([heatLayer]);
+
+
+
+
+    const overlayMaps = {
+        "Marker Cluster": marker_cluster,
+        "Heatmap": heatmap
+    };
+
+
+
+
+
     // Create the map object with intial options
     const map = L.map("map", {
         center: [38.8954, -77.0369], // Washington, D.C.
@@ -28,32 +77,10 @@ d3.json(geojson_file).then(function (data) {
     });
 
 
-    // Create a marker cluster group
-    const markers = L.markerClusterGroup();
-
-
-    // Add markers to the cluster group
-    data.features.forEach(function (feature) {
-        const lat = feature.geometry.coordinates[1];
-        const lng = feature.geometry.coordinates[0];
-
-        if (lat && lng) {
-            const marker = L.marker([lat, lng])
-                .bindPopup(`<b>${feature.properties.violation_description}</b><br>${feature.properties.location}`);
-
-            markers.addLayer(marker);
-        }
-    });
-
-    // Add marker cluster group to the map
-    map.addLayer(markers);
-
-
-
-
-
-
-
+    // Add layer control to the map with both base and overlay layers
+    L.control.layers({
+        "Street Map": street_tile
+    }, overlayMaps, { collapsed: false }).addTo(map);
 
 
 
