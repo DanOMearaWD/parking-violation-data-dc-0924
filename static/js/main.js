@@ -181,9 +181,9 @@ d3.json(geojson_file).then(function (data) {
 
 
 
-    // Remove violation descriptions with counts less than 3000
+    // Remove violation descriptions with counts less than 2600 (top 10)
     for (const description in violationDescriptionCounts) {
-        if (violationDescriptionCounts[description] < 3000) {
+        if (violationDescriptionCounts[description] < 2600) {
             delete violationDescriptionCounts[description];  // Remove the entry
         }
     }
