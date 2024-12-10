@@ -3,6 +3,39 @@
 // http://localhost:8000/
 
 
+// FUNCTIONS
+function formatDate(date) {
+
+    //maps
+    const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    const weekday = weekdays[date.getDay()]; // Get the weekday name
+    const month = months[date.getMonth()]; // Get the month name
+    const day = date.getDate(); // Day of the month
+    const year = date.getFullYear(); // Full year
+    let hours = date.getHours(); // Hour (0-23)
+    const minutes = date.getMinutes(); // Minute (0-59)
+
+
+    let ampm = 'AM';
+    if (hours >= 12) {
+        ampm = 'PM';
+    }
+
+    if (hours > 12) {
+        hours -= 12;  // Convert hours from 24-hour format to 12-hour format
+    } else if (hours === 0) {
+        hours = 12;  // Midnight (0 hours) should be displayed as 12
+    }
+
+    let minutesStr = minutes;
+    if (minutes < 10) {
+        minutesStr = '0' + minutes; // Add leading zero to minutes
+    }
+
+    return `${weekday}, ${month} ${day}, ${year}, ${hours}:${minutesStr} ${ampm}`;
+}
 
 
 
@@ -37,8 +70,18 @@ d3.json(geojson_file).then(function (data) {
         const lat = feature.geometry.coordinates[1];
         const lng = feature.geometry.coordinates[0];
 
+
+        const date = new Date(feature.properties.date);
+
+
+
+
+
         const marker = L.marker([lat, lng])
-            .bindPopup(`<b>${feature.properties.violation_description}</b><br>${feature.properties.location}`);
+            .bindPopup(`
+                <strong>${feature.properties.violation_description}</strong>
+                <strong>${formatDate(date)}</strong>
+            `);
         marker_cluster.addLayer(marker);
 
 
