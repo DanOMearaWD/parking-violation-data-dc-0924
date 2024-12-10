@@ -40,6 +40,8 @@ function formatDate(date) {
 
 
 
+//initialize geojson file location
+const geojson_file = "../../output/Cleaned_Parking_Violations_DC_09_2024.geojson";
 
 //load Geojson
 d3.json(geojson_file).then(function (data) {
