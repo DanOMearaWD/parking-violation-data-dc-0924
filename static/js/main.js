@@ -47,8 +47,8 @@ function isGitHubPages() {
 // Set GeoJSON file path conditionally
 let geojson_file;
 if (isGitHubPages()) {
-    // If running on GitHub Pages, use the relative path starting from the root of the repo
-    geojson_file = "/project3-team4/output/Cleaned_Parking_Violations_DC_09_2024.geojson";
+    // If running on GitHub Pages, use absolute url path
+    geojson_file = "https://danomearawd.github.io/project3-team4/output/Cleaned_Parking_Violations_DC_09_2024.geojson";
 } else {
     // If running locally, use the relative path from your local folder structure
     geojson_file = "../../output/Cleaned_Parking_Violations_DC_09_2024.geojson";
