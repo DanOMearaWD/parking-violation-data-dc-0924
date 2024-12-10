@@ -65,17 +65,15 @@ d3.json(geojson_file).then(function (data) {
     const heatmap_data = []
 
 
+    //count of each violation description
+    const violationDescriptionCounts = {};
+
     // Add markers to the cluster group
     data.features.forEach(function (feature) {
         const lat = feature.geometry.coordinates[1];
         const lng = feature.geometry.coordinates[0];
 
-
         const date = new Date(feature.properties.date);
-
-
-
-
 
         const marker = L.marker([lat, lng])
             .bindPopup(`
@@ -84,10 +82,23 @@ d3.json(geojson_file).then(function (data) {
             `);
         marker_cluster.addLayer(marker);
 
-
         heatmap_data.push([lat, lng, 0.007]);
 
+
+        const violationDescription = feature.properties.violation_description;
+
+        // Check if this violation description is already in the counts object
+        if (violationDescriptionCounts[violationDescription]) {
+            violationDescriptionCounts[violationDescription]++;  // Increment the count
+        } else {
+            violationDescriptionCounts[violationDescription] = 1;  // Initialize the count to 1
+        }
+
+
     });
+
+
+
 
 
     // Create the heatmap layer using the heatmapData array
@@ -126,6 +137,94 @@ d3.json(geojson_file).then(function (data) {
     L.control.layers({
         "Street Map": street_tile
     }, overlayMaps, { collapsed: false }).addTo(map);
+
+
+
+
+
+
+    // Remove violation descriptions with counts less than 3000
+    for (const description in violationDescriptionCounts) {
+        if (violationDescriptionCounts[description] < 3000) {
+            delete violationDescriptionCounts[description];  // Remove the entry
+        }
+    }
+
+    // Sort violation descriptions by count (in descending order)
+    const sortedViolationDescriptions = Object.entries(violationDescriptionCounts)
+        .sort((a, b) => b[1] - a[1]);  // Sort by count (value) in descending order
+
+    // Prepare the labels and data for the chart
+    const violationDescriptions = sortedViolationDescriptions.map(item => item[0]);  // Sorted labels
+    const violationCounts = sortedViolationDescriptions.map(item => item[1]);  // Sorted counts
+
+
+
+
+
+
+
+
+
+
+    // Create the donut chart with Chart.js
+    const ctx = document.getElementById('donutChart').getContext('2d');
+    const donutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: violationDescriptions,  // Violation descriptions as labels
+            datasets: [{
+                label: 'Violation Descriptions',
+                data: violationCounts,  // Counts of each violation description
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',   // Red
+                    'rgba(54, 162, 235, 0.2)',   // Blue
+                    'rgba(255, 206, 86, 0.2)',   // Yellow
+                    'rgba(75, 192, 192, 0.2)',   // Teal
+                    'rgba(153, 102, 255, 0.2)',  // Purple
+                    'rgba(255, 159, 64, 0.2)',   // Orange
+                    'rgba(0, 255, 0, 0.2)',      // Green
+                    'rgba(255, 99, 255, 0.2)',   // Pink
+                    'rgba(255, 165, 0, 0.2)',    // Amber
+                    'rgba(100, 100, 255, 0.2)',  // Light Blue
+                ],
+
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',     // Red
+                    'rgba(54, 162, 235, 1)',     // Blue
+                    'rgba(255, 206, 86, 1)',     // Yellow
+                    'rgba(75, 192, 192, 1)',     // Teal
+                    'rgba(153, 102, 255, 1)',    // Purple
+                    'rgba(255, 159, 64, 1)',     // Orange
+                    'rgba(0, 255, 0, 1)',        // Green
+                    'rgba(255, 99, 255, 1)',     // Pink
+                    'rgba(255, 165, 0, 1)',      // Amber
+                    'rgba(100, 100, 255, 1)',    // Light Blue
+                ],
+
+                borderWidth: 1.5
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            // Format the number with commas
+                            return `${tooltipItem.raw.toLocaleString()} violations`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+
+
 
 
 

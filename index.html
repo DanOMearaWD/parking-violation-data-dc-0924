@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DC Parking Violations 09/24 | Interactive Map and Visualizations</title>
+    <title>DC Parking Violations - September 2024 | Interactive</title>
     <!-- Leaflet & Marker Cluster CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.1/dist/MarkerCluster.css" />
@@ -14,9 +14,10 @@
 
 <body>
 
+    <header>Parking Violations in Washington, D.C. &ndash; September 2024</header>
     <div id="map"></div>
 
-
+    <canvas id="donutChart"></canvas>
 
     <!--D3.JS-->
     <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -24,7 +25,9 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.5.1/dist/leaflet.markercluster.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/leaflet.heat@0.2.0/dist/leaflet-heat.min.js"></script>
-   <script src="static/js/main.js"></script>
+    <!--Chart.js-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="static/js/main.js"></script>
 </body>
 
 </html>
