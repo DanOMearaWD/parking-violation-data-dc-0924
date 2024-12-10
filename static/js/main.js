@@ -215,16 +215,16 @@ d3.json(geojson_file).then(function (data) {
                 label: 'Violation Descriptions',
                 data: violationCounts,  // Counts of each violation description
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',   // Red
-                    'rgba(54, 162, 235, 0.2)',   // Blue
-                    'rgba(255, 206, 86, 0.2)',   // Yellow
-                    'rgba(75, 192, 192, 0.2)',   // Teal
-                    'rgba(153, 102, 255, 0.2)',  // Purple
-                    'rgba(255, 159, 64, 0.2)',   // Orange
-                    'rgba(0, 255, 0, 0.2)',      // Green
-                    'rgba(255, 99, 255, 0.2)',   // Pink
-                    'rgba(255, 165, 0, 0.2)',    // Amber
-                    'rgba(100, 100, 255, 0.2)',  // Light Blue
+                    'rgba(255, 99, 132, 0.33)',   // Red
+                    'rgba(54, 162, 235, 0.33)',   // Blue
+                    'rgba(255, 206, 86, 0.33)',   // Yellow
+                    'rgba(75, 192, 192, 0.33)',   // Teal
+                    'rgba(153, 102, 255, 0.33)',  // Purple
+                    'rgba(255, 159, 64, 0.33)',   // Orange
+                    'rgba(0, 255, 0, 0.33)',      // Green
+                    'rgba(255, 99, 255, 0.33)',   // Pink
+                    'rgba(255, 165, 0, 0.33)',    // Amber
+                    'rgba(100, 100, 255, 0.33)',  // Light Blue
                 ],
 
                 borderColor: [
@@ -253,7 +253,7 @@ d3.json(geojson_file).then(function (data) {
                             size: 14,
                             family: 'Roboto'
                         },
-                        color: 'rgba(255,255,255,0.75)',
+                        color: '#202020',
                     },
                 },
                 tooltip: {
@@ -266,12 +266,7 @@ d3.json(geojson_file).then(function (data) {
                 }
             }
         }
-
-
     });
-
-
-
 
 
 
