@@ -136,25 +136,6 @@ d3.json(geojson_file).then(function (data) {
 
 
 
-    //PLOTLY
-
-
-
-
-
-    TESTER = document.getElementById('tester');
-    Plotly.newPlot(TESTER, [{
-        x: [1, 2, 3, 4, 5],
-        y: [1, 2, 4, 8, 16]
-    }], {
-        margin: { t: 0 }
-    }, {
-        displayModeBar: false,  // Disable the entire modebar
-        responsive: true  // Make the chart responsive
-    });
-
-
-
 
 }).catch(function (error) {
     console.error("Error loading GeoJSON file:", error);
