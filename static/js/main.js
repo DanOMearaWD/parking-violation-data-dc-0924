@@ -248,6 +248,13 @@ d3.json(geojson_file).then(function (data) {
             plugins: {
                 legend: {
                     position: 'top',
+                    labels: {
+                        font: {
+                            size: 14,
+                            family: 'Roboto'
+                        },
+                        color: 'rgba(255,255,255,0.75)',
+                    },
                 },
                 tooltip: {
                     callbacks: {
@@ -259,6 +266,8 @@ d3.json(geojson_file).then(function (data) {
                 }
             }
         }
+
+
     });
 
 
