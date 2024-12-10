@@ -73,7 +73,7 @@ d3.json(geojson_file).then(function (data) {
     const map = L.map("map", {
         center: [38.8954, -77.0369], // Washington, D.C.
         zoom: 11, // zoom level (11 is a good default for city-level zoom)
-        layers: [street_tile]  // street_tile as base layer
+        layers: [street_tile, marker_cluster, heatmap]  // street_tile as base layer
     });
 
 
@@ -84,6 +84,16 @@ d3.json(geojson_file).then(function (data) {
         "Street Map": street_tile
     }, overlayMaps, { collapsed: false }).addTo(map);
 
+
+
+
+
+
+
+
+
+
+    //PLOTLY
 
 
 
