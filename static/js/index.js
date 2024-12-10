@@ -105,9 +105,10 @@ d3.json(geojson_file).then(function (data) {
         y: [1, 2, 4, 8, 16]
     }], {
         margin: { t: 0 }
+    }, {
+        displayModeBar: false,  // Disable the entire modebar
+        responsive: true  // Make the chart responsive
     });
-
-
 
 
 
