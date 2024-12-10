@@ -79,7 +79,7 @@ d3.json(geojson_file).then(function (data) {
 
         const marker = L.marker([lat, lng])
             .bindPopup(`
-                <strong>${feature.properties.violation_description}</strong>
+                <strong>${feature.properties.violation_description}</strong><br />
                 <strong>${formatDate(date)}</strong>
             `);
         marker_cluster.addLayer(marker);
