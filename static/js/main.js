@@ -47,11 +47,7 @@ const geojson_file = "../../output/Cleaned_Parking_Violations_DC_09_2024.geojson
 d3.json(geojson_file).then(function (data) {
     console.log(data);
 
-    // Tile layers
-    const street_tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        noWrap: true // Disable tile wrapping
-    });
+
 
 
 
@@ -114,6 +110,35 @@ d3.json(geojson_file).then(function (data) {
 
 
 
+    // Tile layers
+    const street_tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        noWrap: true // Disable tile wrapping
+    });
+
+    const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: '&copy; Esri, Maxar, Earthstar Geographics, and the GIS User Community',
+        noWrap: true
+    });
+
+    const minimalist = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors, &copy; CartoDB',
+        noWrap: true
+    });
+
+
+
+
+
+
+    // Define baseMaps (use base maps as first parameter)
+    const baseMaps = {
+        "Minimalist": minimalist,
+        "Street Map": street_tile,
+        "Satellite": satellite
+    };
+
+    // Define overlayMaps (use overlay maps as second parameter)
     const overlayMaps = {
         "Marker Cluster": marker_cluster,
         "Heatmap": heatmap
@@ -127,17 +152,14 @@ d3.json(geojson_file).then(function (data) {
     const map = L.map("map", {
         center: [38.8954, -77.0369], // Washington, D.C.
         zoom: 11, // zoom level (11 is a good default for city-level zoom)
-        layers: [street_tile, heatmap]  // street_tile as base layer
+        layers: [minimalist, heatmap]  // street_tile as base layer
     });
 
 
 
 
     // Add layer control to the map with both base and overlay layers
-    L.control.layers({
-        "Street Map": street_tile
-    }, overlayMaps, { collapsed: false }).addTo(map);
-
+    L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
 
 
 
