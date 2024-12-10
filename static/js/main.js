@@ -85,7 +85,7 @@ d3.json(geojson_file).then(function (data) {
         marker_cluster.addLayer(marker);
 
 
-        heatmap_data.push([lat, lng, 0.01]);
+        heatmap_data.push([lat, lng, 0.007]);
 
     });
 
@@ -94,7 +94,7 @@ d3.json(geojson_file).then(function (data) {
     const heatLayer = L.heatLayer(heatmap_data, {
         radius: 25,
         blur: 15,
-        maxZoom: 17
+        maxZoom: 16
     });
 
     //Create a heatmap layer group
@@ -116,7 +116,7 @@ d3.json(geojson_file).then(function (data) {
     const map = L.map("map", {
         center: [38.8954, -77.0369], // Washington, D.C.
         zoom: 11, // zoom level (11 is a good default for city-level zoom)
-        layers: [street_tile, marker_cluster, heatmap]  // street_tile as base layer
+        layers: [street_tile, heatmap]  // street_tile as base layer
     });
 
 
