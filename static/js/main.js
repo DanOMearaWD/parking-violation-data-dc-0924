@@ -257,6 +257,7 @@ d3.json(geojson_file).then(function (data) {
                         color: '#202020',
                     },
                 },
+title: { display: true, text: 'Most Common Violations', font: { size: 18, family: 'Roboto' }, color: '#202020' },
                 tooltip: {
                     callbacks: {
                         label: function (tooltipItem) {
