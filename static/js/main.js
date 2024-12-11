@@ -39,7 +39,6 @@ if (window.location.hostname.includes('github.io')) {
 
 //load Geojson
 d3.json(geojson_file).then(function (data) {
-    console.log(data);
 
     // Create a marker cluster group
     const marker_cluster = L.markerClusterGroup();
@@ -61,7 +60,11 @@ d3.json(geojson_file).then(function (data) {
             .bindPopup(`
                 <strong>${feature.properties.violation_description}</strong><hr />
                 <strong>${formatDate(date)}</strong> <br />
-                <i>${feature.properties.location}</i>
+                <i>${feature.properties.location}</i> <hr />
+                <strong>Fine: $${feature.properties.fine}</strong> <br />
+                <strong>Penalty: $${feature.properties.penalty}</strong> <br />
+                <strong>Paid: $${feature.properties.paid}</strong> <br />
+
             `);
         marker_cluster.addLayer(marker);
 
