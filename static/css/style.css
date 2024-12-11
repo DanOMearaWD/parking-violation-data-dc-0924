@@ -35,3 +35,9 @@ header {
     opacity: 0.8;
     color: #202020;
 }
+
+@media (min-width: 650px) {
+    #map {
+        max-height: 325px !important;
+    }
+}
