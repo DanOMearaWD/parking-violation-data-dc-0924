@@ -191,80 +191,69 @@ d3.json(geojson_file).then(function (data) {
                 label: 'Violation Descriptions',
                 data: violationCounts,  // Counts of each violation description
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.33)',   // Red
-                    'rgba(54, 162, 235, 0.33)',   // Blue
-                    'rgba(255, 206, 86, 0.33)',   // Yellow
-                    'rgba(75, 192, 192, 0.33)',   // Teal
-                    'rgba(153, 102, 255, 0.33)',  // Purple
-                    'rgba(255, 159, 64, 0.33)',   // Orange
-                    'rgba(0, 255, 0, 0.33)',      // Green
-                    'rgba(255, 99, 255, 0.33)',   // Pink
-                    'rgba(255, 165, 0, 0.33)',    // Amber
-                    'rgba(100, 100, 255, 0.33)',  // Light Blue
+                    'rgba(255, 99, 132, 0.33)',  // Red
+                    'rgba(54, 162, 235, 0.33)',  // Blue
+                    'rgba(255, 206, 86, 0.33)',  // Yellow
+                    'rgba(75, 192, 192, 0.33)',  // Teal
+                    'rgba(153, 102, 255, 0.33)', // Purple
+                    'rgba(255, 159, 64, 0.33)',  // Orange
+                    'rgba(0, 255, 0, 0.33)',     // Green
+                    'rgba(255, 99, 255, 0.33)',  // Pink
+                    'rgba(255, 165, 0, 0.33)',   // Amber
+                    'rgba(100, 100, 255, 0.33)', // Light Blue
                 ],
-
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',     // Red
-                    'rgba(54, 162, 235, 1)',     // Blue
-                    'rgba(255, 206, 86, 1)',     // Yellow
-                    'rgba(75, 192, 192, 1)',     // Teal
-                    'rgba(153, 102, 255, 1)',    // Purple
-                    'rgba(255, 159, 64, 1)',     // Orange
-                    'rgba(0, 255, 0, 1)',        // Green
-                    'rgba(255, 99, 255, 1)',     // Pink
-                    'rgba(255, 165, 0, 1)',      // Amber
-                    'rgba(100, 100, 255, 1)',    // Light Blue
+                    'rgba(255, 99, 132, 1)',    // Red
+                    'rgba(54, 162, 235, 1)',    // Blue
+                    'rgba(255, 206, 86, 1)',    // Yellow
+                    'rgba(75, 192, 192, 1)',    // Teal
+                    'rgba(153, 102, 255, 1)',   // Purple
+                    'rgba(255, 159, 64, 1)',    // Orange
+                    'rgba(0, 255, 0, 1)',       // Green
+                    'rgba(255, 99, 255, 1)',    // Pink
+                    'rgba(255, 165, 0, 1)',     // Amber
+                    'rgba(100, 100, 255, 1)',   // Light Blue
                 ],
-
-                borderWidth: 1.5
+                borderWidth: 2
             }]
         },
         options: {
             responsive: true,
-            layout: {
-                padding: {
-                    top: 0,    // Adjust padding above the chart
-                    bottom: 5, // Adjust padding below the chart
-                    left: 5,  // Adjust padding on the left
-                    right: 5  // Adjust padding on the right
-                }
-            },
             plugins: {
                 legend: {
-                    position: 'top',
+                    position: 'bottom',  // Move legend to the bottom
                     labels: {
                         font: {
                             size: 12,
                             family: 'Roboto'
                         },
                         color: '#202020',
+                        boxWidth: 15,
+                        padding: 8
                     },
                 },
                 title: {
                     display: true,
                     text: 'Most Common Violations',
                     font: {
-                        size: 18,
+                        size: 20,
                         family: 'Roboto'
                     },
                     color: '#202020',
-                    padding: {
-                        top: 0,   // Adjust top padding of the title
-                        bottom: 0 // Adjust bottom padding of the title
-                    }
+                    padding: 0
                 },
                 tooltip: {
                     callbacks: {
                         label: function (tooltipItem) {
-                            // Format the number with commas
                             return `${tooltipItem.raw.toLocaleString()} violations`;
                         }
                     }
                 }
             }
         }
-
     });
+
+
 
 
 
