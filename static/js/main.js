@@ -2,12 +2,10 @@
 //LOCAL SERVER. RUN static/py/server.py then use:
 // http://localhost:8000/
 
-
 // FUNCTIONS
 function formatDate(date) {
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
     const weekday = weekdays[date.getDay()];
     const month = months[date.getMonth()];
     const day = date.getDate();
@@ -28,8 +26,6 @@ function formatDate(date) {
     return `${weekday}, ${month} ${day}, ${year}, ${hours}:${minutesStr} ${ampm}`;
 }
 
-
-
 // Set GeoJSON file path conditionally
 let geojson_file;
 //if on github set url path || set relative path
@@ -40,7 +36,6 @@ if (window.location.hostname.includes('github.io')) {
     // If running locally, use the relative path from your local folder structure
     geojson_file = "../../output/Cleaned_Parking_Violations_DC_09_2024.geojson";
 }
-
 
 //load Geojson
 d3.json(geojson_file).then(function (data) {
@@ -72,7 +67,6 @@ d3.json(geojson_file).then(function (data) {
 
         heatmap_data.push([lat, lng, 0.007]);
 
-
         const violationDescription = feature.properties.violation_description;
 
         // Check if this violation description is already in the counts object
@@ -82,12 +76,7 @@ d3.json(geojson_file).then(function (data) {
             violationDescriptionCounts[violationDescription] = 1;  // Initialize the count to 1
         }
 
-
     });
-
-
-
-
 
     // Create the heatmap layer using the heatmapData array
     const heatLayer = L.heatLayer(heatmap_data, {
@@ -98,9 +87,6 @@ d3.json(geojson_file).then(function (data) {
 
     //Create a heatmap layer group
     const heatmap = L.layerGroup([heatLayer]);
-
-
-
 
     // Tile layers
     const street_tile = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -118,11 +104,6 @@ d3.json(geojson_file).then(function (data) {
         noWrap: true
     });
 
-
-
-
-
-
     // Define baseMaps (use base maps as first parameter)
     const baseMaps = {
         "Minimalist": minimalist,
@@ -136,10 +117,6 @@ d3.json(geojson_file).then(function (data) {
         "Heatmap": heatmap
     };
 
-
-
-
-
     // Create the map object with intial options
     const map = L.map("map", {
         center: [38.8954, -77.0369], // Washington, D.C.
@@ -147,15 +124,8 @@ d3.json(geojson_file).then(function (data) {
         layers: [minimalist, heatmap]  // street_tile as base layer
     });
 
-
-
-
     // Add layer control to the map with both base and overlay layers
     L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
-
-
-
-
 
     // Remove violation descriptions with counts less than 2600 (top 10)
     for (const description in violationDescriptionCounts) {
@@ -171,15 +141,6 @@ d3.json(geojson_file).then(function (data) {
     // Prepare the labels and data for the chart
     const violationDescriptions = sortedViolationDescriptions.map(item => item[0]);  // Sorted labels
     const violationCounts = sortedViolationDescriptions.map(item => item[1]);  // Sorted counts
-
-
-
-
-
-
-
-
-
 
     // Create the donut chart with Chart.js
     const ctx = document.getElementById('donutChart').getContext('2d');
@@ -252,18 +213,6 @@ d3.json(geojson_file).then(function (data) {
             }
         }
     });
-
-
-
-
-
-
-
-
-
-
-
-
 
 }).catch(function (error) {
     console.error("Error loading GeoJSON file:", error);
