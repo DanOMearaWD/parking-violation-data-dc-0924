@@ -177,42 +177,52 @@ d3.json(geojson_file).then(function (data) {
                 ],
                 borderWidth: 2
             }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'bottom',  // Move legend to the bottom
-                    labels: {
-                        font: {
-                            size: 12,
-                            family: 'Roboto'
-                        },
-                        color: '#202020',
-                        boxWidth: 15,
-                        padding: 8
-                    },
-                },
-                title: {
-                    display: true,
-                    text: 'Most Common Violations',
-                    font: {
-                        size: 20,
-                        family: 'Roboto'
-                    },
-                    color: '#202020',
-                    padding: 0
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function (tooltipItem) {
-                            return `${tooltipItem.raw.toLocaleString()} violations`;
-                        }
-                    }
-                }
-            }
         }
     });
+
+
+    //SET OPTIONS
+    donutChart.options.responsive = true;
+    donutChart.options.plugins.legend = {
+        position: 'bottom',  // Move legend to the bottom
+        labels: {
+            font: {
+                size: 12,
+                family: 'Roboto'
+            },
+            color: '#202020',
+            boxWidth: 15,
+            padding: 8
+        },
+    };
+    donutChart.options.plugins.title = {
+        display: true,
+        text: 'Most Common Violations',
+        font: {
+            size: 20,
+            family: 'Roboto'
+        },
+        color: '#202020',
+        padding: 0
+    };
+    donutChart.options.plugins.tooltip = {
+        callbacks: {
+            label: function (tooltipItem) {
+                return `${tooltipItem.raw.toLocaleString()} violations`;
+            }
+        }
+    };
+
+
+    //UPDATE CHART AFTER OPTIONS MODIFICATIONS
+    donutChart.update();
+
+
+
+
+
+
+
 
 }).catch(function (error) {
     console.error("Error loading GeoJSON file:", error);
