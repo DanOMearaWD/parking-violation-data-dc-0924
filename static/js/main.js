@@ -5,48 +5,35 @@
 
 // FUNCTIONS
 function formatDate(date) {
-
-    //maps
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-    const weekday = weekdays[date.getDay()]; // Get the weekday name
-    const month = months[date.getMonth()]; // Get the month name
-    const day = date.getDate(); // Day of the month
-    const year = date.getFullYear(); // Full year
-    let hours = date.getHours(); // Hour (0-23)
-    const minutes = date.getMinutes(); // Minute (0-59)
+    const weekday = weekdays[date.getDay()];
+    const month = months[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+    let hours = date.getHours();
+    const minutes = date.getMinutes();
 
+    // Determine AM/PM and convert hours to 12-hour format
+    const ampm = hours >= 12 ? 'PM' : 'AM'; // ternary operator (? :) condition ? if true : else
 
-    let ampm = 'AM';
-    if (hours >= 12) {
-        ampm = 'PM';
-    }
+    hours = hours % 12 || 12; // remainder or 12. so 12 & 12 equates to 0 (false) then the or || kicks in and becomes 12
+    //If the first number is smaller than the second(like 5 % 12), the result is just the first number.
+    //If the first number is larger(like 13 % 12), it gives the leftover part after dividing.
 
-    if (hours > 12) {
-        hours -= 12;  // Convert hours from 24-hour format to 12-hour format
-    } else if (hours === 0) {
-        hours = 12;  // Midnight (0 hours) should be displayed as 12
-    }
-
-    let minutesStr = minutes;
-    if (minutes < 10) {
-        minutesStr = '0' + minutes; // Add leading zero to minutes
-    }
+    // Format minutes with leading zero if needed
+    const minutesStr = minutes < 10 ? '0' + minutes : minutes; // add 0 to single digit minutes  ternary operator (? :) condition ? if true : else 
 
     return `${weekday}, ${month} ${day}, ${year}, ${hours}:${minutesStr} ${ampm}`;
 }
 
 
 
-// Function to determine if the app is running on GitHub Pages
-function isGitHubPages() {
-    return window.location.hostname.includes('github.io');
-}
-
 // Set GeoJSON file path conditionally
 let geojson_file;
-if (isGitHubPages()) {
+//if on github set url path || set relative path
+if (window.location.hostname.includes('github.io')) {
     // If running on GitHub Pages, use absolute url path
     geojson_file = "https://danomearawd.github.io/project3-team4/output/Cleaned_Parking_Violations_DC_09_2024.geojson";
 } else {
@@ -55,27 +42,15 @@ if (isGitHubPages()) {
 }
 
 
-
-
-
-
 //load Geojson
 d3.json(geojson_file).then(function (data) {
     console.log(data);
 
-
-
-
-
-
     // Create a marker cluster group
     const marker_cluster = L.markerClusterGroup();
 
-
-
     //array to hold heatmap arrays [lat,lng,intensity]
     const heatmap_data = []
-
 
     //count of each violation description
     const violationDescriptionCounts = {};
@@ -246,18 +221,38 @@ d3.json(geojson_file).then(function (data) {
         },
         options: {
             responsive: true,
+            layout: {
+                padding: {
+                    top: 0,    // Adjust padding above the chart
+                    bottom: 5, // Adjust padding below the chart
+                    left: 5,  // Adjust padding on the left
+                    right: 5  // Adjust padding on the right
+                }
+            },
             plugins: {
                 legend: {
                     position: 'top',
                     labels: {
                         font: {
-                            size: 14,
+                            size: 12,
                             family: 'Roboto'
                         },
                         color: '#202020',
                     },
                 },
-title: { display: true, text: 'Most Common Violations', font: { size: 18, family: 'Roboto' }, color: '#202020' },
+                title: {
+                    display: true,
+                    text: 'Most Common Violations',
+                    font: {
+                        size: 18,
+                        family: 'Roboto'
+                    },
+                    color: '#202020',
+                    padding: {
+                        top: 0,   // Adjust top padding of the title
+                        bottom: 0 // Adjust bottom padding of the title
+                    }
+                },
                 tooltip: {
                     callbacks: {
                         label: function (tooltipItem) {
@@ -268,6 +263,7 @@ title: { display: true, text: 'Most Common Violations', font: { size: 18, family
                 }
             }
         }
+
     });
 
 
