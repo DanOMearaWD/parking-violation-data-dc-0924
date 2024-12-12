@@ -34,10 +34,8 @@ REPO_NAME/
 ├── output/
 │   ├── geo_data.db  # SQLite database
 │   └── Cleaned_Parking_Violations_DC_09_2024.geojson  # Cleaned geojson data
-│   └── img/
-│       ├── fine_distribution.png # Bar Chart
-│       ├── paid_fines_distribution.png # Bar Chart
-│       └── penalty_distribution.png # Bar Chart
+│   └── img/* # Additional Visualizations
+│       
 └── static/
     ├── css/
     │   └── style.css  # Styles for Web Page
@@ -49,3 +47,17 @@ REPO_NAME/
         └── preprocess_geojson.ipynb  # Jupyter notebook for preprocessing geojson data
 ```
 
+## 📝 Summary of Operations
+
+
+
+## 🛠️ Technologies Used
+- **HTML/CSS**: Markup and styling to structure and design the webpage and map layout.
+- **JavaScript**: Programming language used to fetch, process, and display interactive parking data
+   - **Leaflet.js**: A JavaScript library for creating interactive maps, used to visualize the earthquake data.
+      - Marker Cluster # plugin for Leaflet
+      - Heat # heatmap plugin for Leaflet
+   - **D3.js**: # JavaScript library for manipulating data, used for loading GeoJSON parking violation data.
+   - **GeoJSON**: # format used for encoding geographic data structures, used to represent the parking violation data.
+   - **Chart.js**: # JavaScript library for creating charts and graphs
+   - **Jupyter Notebook** # used to run python code in blocks and render visualizations
