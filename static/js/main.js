@@ -29,8 +29,6 @@ function formatDate(date) {
 d3.json("/geojson")
     .then(function (data) {
 
-        console.log(data);
-
         // Create a marker cluster group
         const marker_cluster = L.markerClusterGroup();
 
