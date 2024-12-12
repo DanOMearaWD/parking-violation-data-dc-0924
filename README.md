@@ -24,7 +24,28 @@ You can view the deployed app above:
     * Ticket payments distribution
 
 
+## 📂 Project Structure
 
-
-
+```plaintext
+REPO_NAME/
+├── index.html  # Interactive Web Page
+├── ORIGINAL_Parking_Violations_Issued_in_September_2024.geojson  # Raw parking violation data
+├── Visualizations.ipynb  # Jupyter notebook for additional visualizations
+├── output/
+│   ├── geo_data.db  # SQLite database
+│   └── Cleaned_Parking_Violations_DC_09_2024.geojson  # Cleaned geojson data
+│   └── img/
+│       ├── fine_distribution.png # Bar Chart
+│       ├── paid_fines_distribution.png # Bar Chart
+│       └── penalty_distribution.png # Bar Chart
+└── static/
+    ├── css/
+    │   └── style.css  # Styles for Web Page
+    ├── js/
+    │   └── main.js  # JavaScript for Web Page
+    └── py/
+        ├── create_sqlite_db.py  # Script for creating SQLite database
+        └── localhost_server.py  # Script for local server setup (optional)
+        └── preprocess_geojson.ipynb  # Jupyter notebook for preprocessing geojson data
+```
 
