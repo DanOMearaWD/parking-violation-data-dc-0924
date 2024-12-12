@@ -6,7 +6,7 @@ This project analyzes parking violation data from September 2024 in Washington D
 
 * **Interactive Map:** Explore violation locations using a heatmap with marker clusters, built with Leaflet.js ([link to Leaflet.js](https://leafletjs.com/)). 
 * **Violation Breakdown:** Visualize the most common violations with a donut chart using Chart.js ([link to Chart.js](https://www.chartjs.org/)).
-* **Time Analysis:** Uncover patterns in parking violations using Matplotlib visualizations (located in the `output/img` folder):
+* **Additional Analysis:** Uncover patterns in parking violations using Matplotlib visualizations (located in the `output/img` folder):
     * Violations by time of day
     * Violations by day of the week
     * Ticket fine distributions
