@@ -58,6 +58,6 @@ REPO_NAME/
       - Marker Cluster # plugin for Leaflet
       - Heat # heatmap plugin for Leaflet
    - **D3.js**: # JavaScript library for manipulating data, used for loading GeoJSON parking violation data.
-   - **GeoJSON**: # format used for encoding geographic data structures, used to represent the parking violation data.
    - **Chart.js**: # JavaScript library for creating charts and graphs
-   - **Jupyter Notebook** # used to run python code in blocks and render visualizations
+- **GeoJSON**: # format used for encoding geographic data structures, used to represent the parking violation data.
+- **Jupyter Notebook** # used to run python code in blocks and render visualizations
