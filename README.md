@@ -1,14 +1,10 @@
 # Visualizing Parking Violations in Washington, D.C. – September 2024🏛️
 
-This project analyzes and visualizes parking violation data from September 2024 in Washington D.C. 
+This project analyzes and visualizes parking violation data from September 2024 in Washington, D.C. It uses a Flask application to serve an interactive web page that visualizes the data stored in an SQLite server, providing users with dynamic insights directly from the database.
 
 **Data Source:**
 
 * [DC.gov Parking Violations Dataset](https://catalog.data.gov/dataset/parking-violations-issued-in-september-2024))
-
-## 🌐 GitHub Page
-[**Parking Violations in Washington, D.C. &ndash; September 2024**](https://danomearawd.github.io/project3-team4/) <br />
-You can view the deployed app above:
 
 ![Screenshot](screenshot.png)
 
