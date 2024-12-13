@@ -1,6 +1,6 @@
 # Visualizing Parking Violations in Washington, D.C. – September 2024🏛️
 
-This project analyzes and visualizes parking violation data from September 2024 in Washington, D.C. It uses a Flask application to serve an interactive web page that visualizes the data stored in an SQLite server, providing users with dynamic insights directly from the database.
+This project analyzes and visualizes parking violation data from September 2024 in Washington, D.C. It features a Flask application that serves an interactive web page, visualizing data stored in an SQLite server to provide dynamic insights. Additionally, a Jupyter notebook is included, which loads the data from the server and generates visualizations using the Seaborn Python library for deeper analysis.
 
 **Data Source:**
 
