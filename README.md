@@ -47,12 +47,20 @@ REPO_NAME/
 
 
 ## 🛠️ Technologies Used
-- **HTML/CSS**: Markup and styling to structure and design the webpage and map layout.
-- **JavaScript**: Programming language used to fetch, process, and display interactive parking data
-   - **Leaflet.js**: A JavaScript library for creating interactive maps, used to visualize the earthquake data.
-      - Marker Cluster # plugin for Leaflet
-      - Heat # heatmap plugin for Leaflet
-   - **D3.js**: # JavaScript library for manipulating data, used for loading GeoJSON parking violation data.
-   - **Chart.js**: # JavaScript library for creating charts and graphs
-- **GeoJSON**: # format used for encoding geographic data structures, used to represent the parking violation data.
-- **Jupyter Notebook** # used to run python code in blocks and render visualizations
+
+- **HTML/CSS**: Used for structuring and styling the webpage and map layout.
+- **JavaScript**: The programming language used to fetch, process, and display interactive parking data.
+   - **Leaflet.js**: A JavaScript library for creating interactive maps, used to visualize parking violation data.
+     - **MarkerCluster plugin**: Groups markers and improves map performance.
+     - **Heatmap plugin**: Creates heatmaps based on parking violation density.
+   - **D3.js**: A JavaScript library for manipulating documents based on data, used for loading and visualizing GeoJSON parking violation data.
+   - **Chart.js**: A JavaScript library for creating interactive charts and graphs.
+- **GeoJSON**: A format for encoding geographic data structures, used to represent the parking violation data.
+- **Python**: Programming language used for backend and data processing.
+   - **Flask**: A web framework for creating the server and handling routing.
+   - **GeoPandas**: A Python library for working with geospatial data.
+   - **Pandas**: A Python library for data manipulation and analysis.
+   - **sqlite3**: Python library for interacting with the SQLite database.
+   - **os**: Python library for interacting with the operating system.
+   - **re**: Python library for regular expression operations.
+- **Jupyter Notebook**: Used for running Python code in blocks and rendering visualizations.
