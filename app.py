@@ -40,20 +40,18 @@ def get_geojson():
         # Query all data from the geo_data table
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM geo_data')
-        rows = cursor.fetchall()
-
-        # return error if no result
-        if not rows:
-            return jsonify({"error": "No data found in the database"}), 404
-
-
-        # Convert the data into GeoJSON format
+        
+        # Prepare to store GeoJSON features
         features = []
-        for row in rows:
+
+        # Iterate over rows directly from the cursor
+        for row in cursor:
+            # Create GeoJSON Point geometry from latitude and longitude
             geometry = {
                 "type": "Point",
-                "coordinates": [row['longitude'], row['latitude']]  # Create GeoJSON Point from latitude and longitude
+                "coordinates": [row['longitude'], row['latitude']]
             }
+
             # Populate properties with column data
             properties = {
                 "date": row['date'],
@@ -65,7 +63,8 @@ def get_geojson():
                 "paid": row['paid'],
                 "penalty": row['penalty']
             }
-            # Populate features with geometry points
+
+            # Create feature and append it to the features list
             feature = {
                 "type": "Feature",
                 "geometry": geometry,
@@ -83,10 +82,11 @@ def get_geojson():
         }
         return jsonify(geojson)
 
-    #if error connecting to db
+    # If error connecting to db
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({"error": str(e)}), 500
+
 
 # run app
 if __name__ == '__main__':
