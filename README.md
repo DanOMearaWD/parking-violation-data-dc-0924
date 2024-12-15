@@ -23,44 +23,53 @@ This project analyzes and visualizes parking violation data from September 2024 
 ## 📂 Project Structure
 
 ```plaintext
-REPO_NAME/
+ROOT/
 ├── index.html  # Web Page (Flask server must be running to use)
 ├── ORIGINAL_Parking_Violations_Issued_in_September_2024.geojson  # Raw parking violation data
 ├── visualizations.ipynb  # Jupyter notebook for additional visualizations
 ├── app.py  # Flask application
+├── create_sqlite_db.py  # Script for creating SQLite database
 ├── output/
 │   ├── geo_data.db  # SQLite database
-│   └── img/*  # Additional Visualizations
-│       
-└── static/
-    ├── css/
-    │   └── style.css  # Styles for Web Page
-    ├── js/
-    │   └── main.js  # JavaScript for Web Page
-    └── py/
-        ├── create_sqlite_db.py  # Script for creating SQLite database
+│   └── img/  # Additional visualizations
+├── static/
+│   ├── css/
+│   │   └── style.css  # Styles for Web Page
+│   ├── js/
+│   │   └── main.js  # JavaScript for Web Page
 
 ```
 
 ## 📝 Summary of Operations
 
 
-
 ## 🛠️ Technologies Used
 
-- **HTML/CSS**: Used for structuring and styling the webpage and map layout.
-- **JavaScript**: The programming language used to fetch, process, and display interactive parking data.
-   - **Leaflet.js**: A JavaScript library for creating interactive maps, used to visualize parking violation data.
-     - **MarkerCluster plugin**: Groups markers and improves map performance.
-     - **Heatmap plugin**: Creates heatmaps based on parking violation density.
-   - **D3.js**: A JavaScript library for manipulating documents based on data, used for loading and visualizing GeoJSON parking violation data.
-   - **Chart.js**: A JavaScript library for creating interactive charts and graphs.
-- **GeoJSON**: A format for encoding geographic data structures, used to represent the parking violation data.
-- **Python**: Programming language used for backend and data processing.
-   - **Flask**: A web framework for creating the server and handling routing.
-   - **GeoPandas**: A Python library for working with geospatial data.
-   - **Pandas**: A Python library for data manipulation and analysis.
-   - **sqlite3**: Python library for interacting with the SQLite database.
-   - **os**: Python library for interacting with the operating system.
-   - **re**: Python library for regular expression operations.
-- **Jupyter Notebook**: Used for running Python code in blocks and rendering visualizations.
+### Frontend
+- **HTML/CSS**: Used for structuring and styling the webpage and map layout.  
+- **JavaScript**: Used to fetch, process, and display interactive parking data.  
+   - **Leaflet.js**: A library for creating interactive maps, used to visualize parking violation data.  
+     - **MarkerCluster plugin**: Groups markers and improves map performance.  
+     - **Heatmap plugin**: Creates heatmaps based on parking violation density.  
+   - **D3.js**: For loading and visualizing GeoJSON parking violation data.  
+   - **Chart.js**: For creating interactive charts and graphs.  
+
+### Data Format
+- **GeoJSON**: A format for encoding geographic data structures, used to represent parking violation data.  
+
+### Backend
+- **Python**: The programming language used for backend development and data processing.  
+
+**Python Libraries Used**:
+- **Flask**: A web framework for creating the server and handling API routing.  
+- **sqlite3**: A library for interacting with and managing SQLite databases.  
+- **os**: A library for interacting with the operating system, managing file paths, and more.  
+- **re**: A library for performing regular expression operations on text data.  
+- **GeoPandas**: A library for working with geospatial data, enabling spatial operations and analysis.  
+- **Pandas**: A library for data manipulation, cleaning, and analysis.  
+- **Matplotlib**: A library for creating static, interactive, and animated visualizations.  
+- **Seaborn**: A statistical data visualization library built on top of Matplotlib, providing easy-to-use plotting functions.  
+
+### Additional Tools
+- **Jupyter Notebook**: A tool for running Python code in blocks and rendering interactive visualizations and analysis.  
+
